@@ -55,7 +55,7 @@ def import_items():
         itemIndex += 1 #adds on another digit going through the loop for the index number
 
     propertyIndex = 0 #starts assigning properties an index number for easier user selection
-    itemId = int(input("Enter Item ID for what item would you like to get? "))
+    itemId = int(input("Enter Item ID for what item would you like to get: "))
     for itemProperties in items[itemId].iter('property'): #loop will take all item properties pairing them with an index number and displaying them for the user
         print(("Item Property ID: {} \t Item Tag: {} \n\t {} ".format(propertyIndex, itemProperties.tag, list(itemProperties.items()))))
         propertyIndex += 1 #adds on another digit going through the loop for the index number
@@ -69,19 +69,18 @@ def import_items():
         passive_effectIndex += 1
         triggered_effectIndex = 0
         for triggered_effect in effect_group.iter('triggered_effect'):
-            for requirement in triggered_effect.iter('requirement'):
-                print(("Item Property ID: {} \t Item Tag: {} \n\t {} ".format(triggered_effectIndex, triggered_effect.tag(), list(triggered_effect.items(), list(requirement.items())))))
+            print(("Item Property ID: {} \t Item Tag: {} \n\t {} ".format(triggered_effectIndex, triggered_effect.tag(), list(triggered_effect.items()))))
         triggered_effectIndex += 1
         effect_groupIndex += 1
-    itemName = input("Which value do you want to edit? ")
-    itemValue = input("Change the {} value to : ".format(itemName))
+    itemName = input("Which entry do you want to edit? ")
+    itemValue = input("Change the {} entry to : ".format(itemName))
     items[itemId][itemProperties].set(itemName, itemValue)
     print("Updated Property {} with the value {}".format(itemName, items[itemId][itemProperties].get(itemName)))
     newItemXML = input("Enter in new filename: ")
     tree.write(newItemXML)
-    print("{} has been created!".format(newItemXML))
+    print("{} will be created on exit".format(newItemXML))
 
-
+#import_items function will bring in the materials.xml file
 def import_materials():
     tree = ET.parse('materials.xml')
     materials = tree.getroot()
@@ -94,20 +93,20 @@ def import_materials():
         materialIndex += 1
 
     propertyIndex = 0
-    materialId = int(input("Enter Item ID for what item would you like to get? "))
+    materialId = int(input("Enter Item ID for what item would you like to get: "))
     for materialProperties in materials[materialId].iter('property'):
         print(("Material Property ID: {} \t Material Tag: {} \n\t {} ".format(propertyIndex, materialProperties.tag, list(materialProperties.items()))))
         propertyIndex += 1
 
-    materialName = input("Which value do you want to edit? ")
-    materialValue = input("Change the {} value to : ".format(materialName))
+    materialName = input("Which entry do you want to edit? ")
+    materialValue = input("Change the {} entry to : ".format(materialName))
     materials[materialId][materialProperties].set(materialName, materialValue)
     print("Updated Property {} with the value {}".format(materialName, materials[materialId][materialProperties].get(materialName)))
     newMaterialXML = input("Enter in new filename: ")
     tree.write(newMaterialXML)
-    print("{} has been created!".format(newMaterialXML))
+    print("{} will be created on exit".format(newMaterialXML))
 
-
+#import_items function will bring in the recipes.xml file
 def import_recipes():
     tree = ET.parse('recipes.xml')
     recipes = tree.getroot()
@@ -120,7 +119,7 @@ def import_recipes():
         recipeIndex += 1
 
     propertyIndex = 0
-    recipeId = int(input("Enter Item ID for what item would you like to get? "))
+    recipeId = int(input("Enter Item ID for what item would you like to get: "))
     for recipeProperties in recipes[recipeId].iter('ingredient'):
         print(("Recipe Property ID: {} \t Recipe Tag: {} \n\t {} ".format(propertyIndex, recipeProperties.tag, list(recipeProperties.items()))))
         propertyIndex += 1
@@ -131,20 +130,20 @@ def import_recipes():
         passive_effectIndex = 0
         for passive_effect in effect_group.iter('passive_effect'):
             print(("Recipe Property ID: {} \t Recipe Tag: {} \n\t {} ".format(passive_effectIndex, passive_effect.tag(), list(passive_effect.items()))))
-        passive_effectIndex += 0
+        passive_effectIndex += 1
         triggered_effectIndex = 0
         for triggered_effect in effect_group.iter('triggered_effect'):
             for requirement in triggered_effect.iter('requirement'):
                 print(("Recipe Property ID: {} \t Recipe Tag: {} \n\t {} ".format(triggered_effectIndex, triggered_effect.tag(), list(triggered_effect.items(), list(requirement.items())))))
         triggered_effectIndex += 1
         effect_groupIndex += 1
-    recipeName = input("Which value do you want to edit? ")
-    recipeValue = input("Change the {} value to : ".format(recipeName))
+    recipeName = input("Which entry do you want to edit? ")
+    recipeValue = input("Change the {} entry to : ".format(recipeName))
     recipes[recipeId][recipeProperties].set(recipeName, recipeValue)
     print("Updated Property {} with the value {}".format(recipeName, recipes[recipeId][recipeProperties].get(recipeName)))
     newRecipeXML = input("Enter in new filename: ")
     tree.write(newRecipeXML)
-    print("{} has been created!".format(newRecipeXML))
+    print("{} will be created on exit".format(newRecipeXML))
 #main function to run the program
 if __name__ == "__main__":
     while (True):
